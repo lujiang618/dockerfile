@@ -22,6 +22,7 @@ RUN apk update && \
 # php https://gist.github.com/phith0n/373cc078a8b25a20432408d5d7556770
 # nginx https://www.cnblogs.com/zhujingzhi/p/9742085.html
 # php+nginx https://segmentfault.com/a/1190000018415600?utm_source=tag-newest
+# https://github.com/tcyfree/apnsc/blob/master/Dockerfile
 # https://github.com/docker-library/php/issues/240
 # https://gist.github.com/guillemcanal/be3db96d3caa315b4e2b8259cab7d07e
 # https://forum.alpinelinux.org/forum/installation/php-iconv-issue
@@ -38,12 +39,6 @@ RUN mkdir /www
 COPY ./php/index.php /www/index.php
 
 VOLUME ["/www", "/usr/local/var/log/php", "/var/run/", "/etc/nginx/"]
-
-VOLUME ["/etc/supervisor/conf.d", "/var/log/supervisor/"]
-COPY ./supervisor/conf.d/ /etc/supervisor/conf.d/
-
-# 将启动命令搞成个脚本通过脚本启动
-# RUN echo "/usr/sbin/nginx" >>/etc/start.sh
 
 # 4.安装php5.6
 RUN apk update && \
@@ -74,12 +69,7 @@ RUN apk update && \
     php-phar \
     php
 
-#RUN mkdir -p /usr/local/var/log/php/
-#RUN mkdir -p /usr/local/var/run/
-#COPY ./php/php-fpm.conf /etc/php/
-#COPY ./php/www.conf /etc/php/php-fpm.d/
-
-# php-fpm.conf
+# php-fpm.conf php.ini
 RUN sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /etc/php/php-fpm.conf && \
     sed -i -e "s/listen\s*=\s*127.0.0.1:9000/listen = 9001/g" /etc/php/php-fpm.conf && \
     sed -i "s|;date.timezone =.*|date.timezone = ${TIMEZONE}|" /etc/php/php.ini && \
@@ -101,6 +91,7 @@ RUN rm -rf /var/cache/apk/*
 
 VOLUME ["/etc/supervisor/conf.d", "/var/log/supervisor/"]
 COPY ./supervisor/conf.d/ /etc/supervisor/conf.d/
+
 
 #6.ADD-CRONTABS
 COPY ./crontabs/default /var/spool/cron/crontabs/
