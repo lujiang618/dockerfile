@@ -38,8 +38,6 @@ COPY ./nginx/cert/ /etc/nginx/cert/
 RUN mkdir /www
 COPY ./php/index.php /www/index.php
 
-VOLUME ["/www", "/usr/local/var/log/php", "/var/run/", "/etc/nginx/"]
-
 # 4.安装php5.6
 RUN apk update && \
   apk add php-intl \
@@ -89,17 +87,14 @@ RUN apk del tzdata
 RUN apk add supervisor
 RUN rm -rf /var/cache/apk/*
 
-VOLUME ["/etc/supervisor/conf.d", "/var/log/supervisor/"]
 COPY ./supervisor/conf.d/ /etc/supervisor/conf.d/
 
 
 #6.ADD-CRONTABS
 COPY ./crontabs/default /var/spool/cron/crontabs/
 RUN cat /var/spool/cron/crontabs/default >> /var/spool/cron/crontabs/root
-RUN mkdir -p /var/log/cron \
- && touch /var/log/cron/cron.log
+RUN mkdir -p /var/log/cron  && touch /var/log/cron/cron.log
 
-VOLUME /var/log/cron
 
 WORKDIR /www
 VOLUME ["/www"]
