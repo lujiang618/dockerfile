@@ -18,7 +18,12 @@ cd dockerfile/php5.6+nginx
 
 docker build -t php56:1.0 .
 
-docker run -d -p 9801:9801 \
+docker run -d \
+-p 9801:9801 \
+--restart=always \
+-m 2g \
+--cpuset-cpus=0 \
+--cpu-shares 1024 \
 -v /docker/nginx/conf/:/etc/nginx/conf.d/ \
 -v /www/lifemall:/www  --privileged=true \
 --name project php56:1.0
