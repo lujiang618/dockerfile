@@ -24,7 +24,7 @@ docker run -d \
 -m 2g \
 --cpuset-cpus=0 \
 --cpu-shares 1024 \
--v /docker/nginx/conf/:/etc/nginx/conf.d/ \
+-v /docker/nginx/mall/:/etc/nginx/conf.d/ \
 -v /www/lifemall:/www  --privileged=true \
 --name project php56:1.0
 

@@ -65,7 +65,9 @@ RUN apk update && \
     php-ctype \
     php-fpm \
     php-phar \
+    php-pear \
     php
+
 
 # php-fpm.conf php.ini
 RUN sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /etc/php/php-fpm.conf && \
@@ -97,9 +99,8 @@ RUN mkdir -p /var/log/cron  && touch /var/log/cron/cron.log
 
 
 WORKDIR /www
-VOLUME ["/www"]
 
-EXPOSE 9800
+EXPOSE 9801
 STOPSIGNAL SIGTERM
 
 #9.添加启动脚本
