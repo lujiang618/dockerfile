@@ -24,7 +24,7 @@ docker-compose down
 # 测试
 ```
 # 输入密码changeme
-curl -u elastic http://192.168.132:9200/_cat/health
+curl -u elastic http://192.168.3.132:9200/_cat/health
 ```
 
 
