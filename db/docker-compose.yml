@@ -1,0 +1,12 @@
+version: '2'
+services:
+  mysql:
+    network_mode: "bridge"
+    environment:
+      MYSQL_ROOT_PASSWORD: "111111"
+      MYSQL_USER: 'gelu'
+      MYSQL_PASS: '111111'
+    image: "mysql:5.7"
+    restart: always
+    ports:
+      - "3306:3306"
