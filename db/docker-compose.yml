@@ -1,12 +1,21 @@
 version: '2'
 services:
   mysql:
+    container_name: "mysql57"
     network_mode: "bridge"
     environment:
+      TZ: Asia/Shanghai
       MYSQL_ROOT_PASSWORD: "111111"
       MYSQL_USER: 'gelu'
       MYSQL_PASS: '111111'
     image: "mysql:5.7"
     restart: always
+    command:
+      --character-set-server=utf8
+      --collation-server=utf8_unicode_ci
+      --explicit_defaults_for_timestamp=true
+      --lower_case_table_names=1
+      --max_allowed_packet=128M
+      --sql-mode=""
     ports:
       - "3306:3306"
