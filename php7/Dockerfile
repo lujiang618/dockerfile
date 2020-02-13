@@ -1,4 +1,4 @@
-FROM alpine:3.5
+FROM alpine:3.8
 
 # Patch APK Mirror to YKode
 #RUN echo "http://dl-4.alpinelinux.org/alpine/v3.6/community" > /etc/apk/repositories
@@ -40,7 +40,7 @@ COPY ./php/index.php /www/index.php
 
 # 4.安装php5.6
 RUN apk update && \
-  apk add php-intl \
+  apk add php7-intl \
     php7-mcrypt \
     php7-openssl \
     php7-gmp \
@@ -50,22 +50,37 @@ RUN apk update && \
     php7-zip \
     php7-zlib \
     php7-mysqli \
-    php7-mysql \
+    php7-mysqlnd \
     php7-bcmath \
     php7-gd \
-    php7-xcache \
     php7-pdo_mysql \
     php7-gettext \
     php7-xmlreader \
     php7-xmlrpc \
     php7-bz2 \
-    php7-memcache \
     php7-iconv \
     php7-curl \
     php7-ctype \
     php7-fpm \
     php7-phar \
     php7-pear \
+    php7-memcached \
+    php7-mongodb \
+    php7-redis \
+    php7-tokenizer \
+    php7-fileinfo \
+    php7-zmq \
+    php7-dev \
+    php7-apcu \
+    php7-xmlwriter \
+    php7-exif \
+    php7-mbstring\
+    php7-opcache \
+    php7-pcntl \
+    php7-session \
+    php7-xml \
+    php7-simplexml \
+    php7-xsl \
     php7
 
 

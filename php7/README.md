@@ -5,7 +5,7 @@
 # 构建镜像的内容
 + docker
 + alpine
-+ php7.0
++ php7.2
 + nginx
 + composer
 + supervisor
