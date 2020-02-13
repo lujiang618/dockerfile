@@ -1,0 +1,15 @@
+version: '3'
+services:
+  api:
+    container_name: mall
+    image: php56:0.1
+    environment:
+      env: dev
+    expose:
+      - '9802'
+    ports:
+      - '9802:9802'
+    privileged: true
+    volumes:
+      - /docker/nginx/mall/:/etc/nginx/conf.d/
+      - /www/lifemall:/www
