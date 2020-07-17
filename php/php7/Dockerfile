@@ -68,6 +68,7 @@ RUN apk update && \
     php7-mongodb \
     php7-redis \
     php7-tokenizer \
+    php7-imagick \
     php7-fileinfo \
     php7-zmq \
     php7-dev \
@@ -93,6 +94,8 @@ RUN sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /etc/php7/php-fpm.conf &
     sed -i "s|max_file_uploads =.*|max_file_uploads = ${PHP_MAX_FILE_UPLOAD}|" /etc/php7/php.ini && \
     sed -i "s|post_max_size =.*|max_file_uploads = ${PHP_MAX_POST}|" /etc/php7/php.ini && \
     sed -i "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/" /etc/php7/php.ini
+
+RUN pecl install swoole
 
 # composer
 RUN curl -sS https://getcomposer.org/installer | \

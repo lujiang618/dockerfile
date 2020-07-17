@@ -31,12 +31,12 @@ RUN apk update && \
 RUN apk add nginx
 
 # 将目录下的文件copy到镜像中
-COPY ./nginx/conf.d/default.conf /etc/nginx/conf.d/
-COPY ./nginx/nginx.conf /etc/nginx/
-COPY ./nginx/cert/ /etc/nginx/cert/
+COPY nginx/conf.d/default.conf /etc/nginx/conf.d/
+COPY nginx/nginx.conf /etc/nginx/
+COPY nginx/cert /etc/nginx/cert/
 
 RUN mkdir /www
-COPY ./php/index.php /www/index.php
+COPY php/index.php /www/index.php
 
 # 4.安装php5.6
 RUN apk update && \
@@ -89,11 +89,11 @@ RUN apk del tzdata
 RUN apk add supervisor
 RUN rm -rf /var/cache/apk/*
 
-COPY ./supervisor/conf.d/ /etc/supervisor/conf.d/
+COPY supervisor/conf.d /etc/supervisor/conf.d/
 
 
 #6.ADD-CRONTABS
-COPY ./crontabs/default /var/spool/cron/crontabs/
+COPY crontabs/default /var/spool/cron/crontabs/
 RUN cat /var/spool/cron/crontabs/default >> /var/spool/cron/crontabs/root
 RUN mkdir -p /var/log/cron  && touch /var/log/cron/cron.log
 
@@ -104,7 +104,7 @@ EXPOSE 9801
 STOPSIGNAL SIGTERM
 
 #9.添加启动脚本
-COPY ./entrypoint.sh /usr/local/
+COPY entrypoint.sh /usr/local/
 RUN chmod +x /usr/local/entrypoint.sh
 
 # 启动nginx命令
