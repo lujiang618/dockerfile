@@ -37,3 +37,5 @@ xpack.security.transport.ssl.certificate_authorities: /usr/share/elasticsearch/c
 xpack.security.transport.ssl.certificate: /usr/share/elasticsearch/config/certificates/es01/es01.crt
 xpack.security.transport.ssl.key: /usr/share/elasticsearch/config/certificates/es01/es01.key
 
+# plugin
+plugin.mandatory: ingest-attachment
