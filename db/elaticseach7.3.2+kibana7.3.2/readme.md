@@ -37,3 +37,4 @@ curl -u elastic http://192.168.3.132:9200/_cat/health
 - [配置SSL、TLS以及HTTPS来确保es、kibana、beats、logstash的安全](https://www.cnblogs.com/fat-girl-spring/p/12714845.html)
 - [Elasticsearch中安装插件（Docker-Compose版）](https://blog.csdn.net/fxtxz2/article/details/105066242)
 - [kibana安全——设置访问账号密码](https://blog.csdn.net/weixin_34355881/article/details/91658513)
+- [Elasticsearch启动https访问](https://www.cnblogs.com/sanduzxcvbnm/p/12654166.html)
