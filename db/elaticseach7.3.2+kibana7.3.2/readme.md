@@ -21,6 +21,12 @@ bin/elasticsearch-plugin install ingest-attachment
 bin/elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v7.3.2/elasticsearch-analysis-ik-7.3.2.zip
 ```
 
+# 测试
+```
+# 输入密码changeme
+curl -u elastic http://192.168.3.132:9200/_cat/health
+```
+
 # 参考资料
 - [run with docker compose](https://www.elastic.co/guide/en/elastic-stack-get-started/7.13/get-started-docker.html#get-started-docker)
 - [ Encrypt communications in Kibana](https://www.elastic.co/guide/en/kibana/7.9/configuring-tls.html)
