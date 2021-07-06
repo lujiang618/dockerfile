@@ -23,8 +23,11 @@ bin/elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis
 
 # 测试
 ```
-# 输入密码changeme
-curl -u elastic http://192.168.3.132:9200/_cat/health
+# 打开kibana
+ https://192.168.3.132:5601
+
+# 在kibana上查看已按照的插件
+GET _cat/plugins
 ```
 
 # 参考资料
