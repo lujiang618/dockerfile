@@ -41,3 +41,4 @@ GET _cat/plugins
 - [Elasticsearch中安装插件（Docker-Compose版）](https://blog.csdn.net/fxtxz2/article/details/105066242)
 - [kibana安全——设置访问账号密码](https://blog.csdn.net/weixin_34355881/article/details/91658513)
 - [Elasticsearch启动https访问](https://www.cnblogs.com/sanduzxcvbnm/p/12654166.html)
+- [gm19900510/docker-elasticsearch-cluster](https://github.com/gm19900510/docker-elasticsearch-cluster)
