@@ -8,14 +8,13 @@ services:
     environment:
       - TZ=Asia/Shanghai"
       - MYSQL_DATABASE='some'
-      - MYSQL_USER='root'
-      - MYSQL_PASSWORD='root'
-      - MYSQL_ROOT_PASSWORD='root'
-      - MYSQL_ALLOW_EMPTY_PASSWORD='true'
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
     ports:
       - '3306:3306'
     volumes:
     - mysql_data:/var/lib/mysql
+    - mysql_log:/var/log/mysql
     - ./mysql/:/etc/mysql/:rw
     - ./mysql/init/:/docker-entrypoint-initdb.d/
     networks:
@@ -36,7 +35,9 @@ services:
       "redis-server /usr/local/etc/redis/redis.conf"
 volumes:
     mysql_data:
-        driver: local
+      driver: local
+    mysql_log:
+      driver: local
     redis_data:
       driver: local
     redis_logs:
