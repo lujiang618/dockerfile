@@ -3,7 +3,6 @@ services:
   es01:
     image: docker.elastic.co/elasticsearch/elasticsearch:${VERSION}
     container_name: es01
-    restart: always
     environment:
       - TZ=Asia/Shanghai
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
@@ -49,7 +48,6 @@ services:
   es02:
     image: docker.elastic.co/elasticsearch/elasticsearch:${VERSION}
     container_name: es02
-    restart: always
     environment:
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
       - TZ=Asia/Shanghai
@@ -87,7 +85,6 @@ services:
   es03:
     image: docker.elastic.co/elasticsearch/elasticsearch:${VERSION}
     container_name: es03
-    restart: always
     environment:
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
       - TZ=Asia/Shanghai
@@ -125,7 +122,6 @@ services:
   kib:
     image: docker.elastic.co/kibana/kibana:${VERSION}
     container_name: kib
-    restart: always
     depends_on: {"es01": {"condition": "service_healthy"}}
     ports:
       - "5601:5601"

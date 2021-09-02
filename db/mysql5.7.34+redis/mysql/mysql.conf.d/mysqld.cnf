@@ -1,0 +1,92 @@
+# Copyright (c) 2014, 2021, Oracle and/or its affiliates.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License, version 2.0,
+# as published by the Free Software Foundation.
+#
+# This program is also distributed with certain software (including
+# but not limited to OpenSSL) that is licensed under separate terms,
+# as designated in a particular file or component or in included license
+# documentation.  The authors of MySQL hereby grant you an additional
+# permission to link the program and your derivative works with the
+# separately licensed software that they have included with MySQL.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License, version 2.0, for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
+
+#
+# The MySQL  Server configuration file.
+#
+# For explanations see
+# http://dev.mysql.com/doc/mysql/en/server-system-variables.html
+
+[mysqld]
+pid-file	= /var/run/mysqld/mysqld.pid
+socket		= /var/run/mysqld/mysqld.sock
+datadir		= /var/lib/mysql
+
+
+port = 3306
+
+# By default we only accept connections from localhost
+#bind-address	= 127.0.0.1
+# Disabling symbolic-links is recommended to prevent assorted security risks
+symbolic-links=0
+
+# * Fine Tuning
+#
+key_buffer_size		= 16M
+# max_allowed_packet	= 64M
+# thread_stack		= 256K
+
+# thread_cache_size       = -1
+
+# This replaces the startup script and checks MyISAM tables if needed
+# the first time they are touched
+myisam-recover-options  = BACKUP
+
+# max_connections        = 151
+
+# table_open_cache       = 4000
+
+#
+# * Logging and Replication
+#
+# Both location gets rotated by the cronjob.
+#
+# Log all queries
+# Be aware that this log type is a performance killer.
+# general_log_file        = /var/log/mysql/query.log
+# general_log             = 1
+#
+# Error log - should be very few entries.
+#
+
+log-error	= /var/log/mysql/error.log
+
+# Here you can see queries with especially long duration
+slow_query_log		= 1
+slow_query_log_file	= /var/log/mysql/mysql-slow.log
+long_query_time = 2
+log-queries-not-using-indexes
+#
+# The following can be used as easy to replay backup logs or for replication.
+# note: if you are setting up a replication slave, see README.Debian about
+#       other settings you may need to change.
+# server-id		= 1
+# log_bin			= /var/log/mysql/mysql-bin.log
+# binlog_expire_logs_seconds	= 2592000
+# binlog_do_db		= include_database_name
+# binlog_ignore_db	= include_database_name
+
+server_id = 1 # 开启二进制日志需要server_id
+log-bin=/var/log/mysql/log-binary  #二进制日志位置
+log-bin-index =/var/log/mysql/log-binary.index #二进制索引文件的文件名
+expire_logs_days = 30
+max_binlog_size = 100M
