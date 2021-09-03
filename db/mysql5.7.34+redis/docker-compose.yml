@@ -6,8 +6,8 @@ services:
     image: mysql:5.7
     restart: always
     environment:
-      - TZ=Asia/Shanghai"
-      - MYSQL_DATABASE='some'
+      - TZ=Asia/Shanghai
+      - MYSQL_DATABASE=some
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_ALLOW_EMPTY_PASSWORD=true
     ports:
