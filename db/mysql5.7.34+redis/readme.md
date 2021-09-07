@@ -9,6 +9,11 @@ GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'root' WITH GRANT OPTION
 
 -- 查看是否开启了binlog
 show variables like 'log_bin';
+
+show variables like'datadir%';
+
+-- 查看字符集
+show variables like'character_set%';
 ```
 
 ```shell
