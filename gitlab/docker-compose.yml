@@ -1,0 +1,29 @@
+version: '2'
+services:
+  gitlab:
+    container_name: "gitlab"
+    image: 'gitlab/gitlab-ce:latest'
+    restart: always
+    privileged: true
+    environment:
+      TZ: 'Asia/Shanghai'
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'https://localhost:8100'
+        gitlab_rails['gitlab_shell_ssh_port'] = 8102
+    ports:
+      - '8100:80'
+      - '8102:22'
+    volumes:
+      - ./config:/etc/gitlab
+      - log:/var/log/gitlab
+      - data:/var/opt/gitlab
+    networks:
+      - some
+volumes:
+  log:
+    driver: local
+  data:
+    driver: local
+networks:
+    some:
+     driver: bridge
