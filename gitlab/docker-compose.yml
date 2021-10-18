@@ -8,22 +8,20 @@ services:
     environment:
       TZ: 'Asia/Shanghai'
       GITLAB_OMNIBUS_CONFIG: |
-        external_url 'https://localhost:8100'
-        gitlab_rails['gitlab_shell_ssh_port'] = 8102
+        external_url 'http://gitlab.flower.com:8100'
+        gitlab_rails['gitlab_shell_ssh_port'] = 8101
     ports:
-      - '8100:80'
-      - '8102:22'
+      - '8100:8100'
+      - '8101:22'
+      - '8102:443'
     volumes:
-      - ./config:/etc/gitlab
+      - config:/etc/gitlab
       - log:/var/log/gitlab
       - data:/var/opt/gitlab
-    networks:
-      - some
 volumes:
   log:
     driver: local
   data:
     driver: local
-networks:
-    some:
-     driver: bridge
+  config:
+    driver: local
