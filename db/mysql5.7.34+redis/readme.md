@@ -21,6 +21,9 @@ show variables like'character_set%';
 docker logs mysql1
 ```
 
+# 注意
+1. mysql默认的字符集为utf8, 如果需要其他字符集，请修改[mysqld.cnf](mysq/../mysql/mysql.conf.d/mysqld.cnf)第39行
+2. 
 # 参考资料
 - [使用docker-compose配置redis服务](https://www.cnblogs.com/xpengp/p/12713374.html)
 - [有关使用 Docker 部署 MySQL 服务器的更多主题](https://www.docs4dev.com/docs/zh/mysql/5.7/reference/docker-mysql-more-topics.html)

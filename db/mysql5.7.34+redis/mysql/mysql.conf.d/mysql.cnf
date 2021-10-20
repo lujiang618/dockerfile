@@ -4,3 +4,4 @@
 # Ref to https://dev.mysql.com/doc/refman/en/mysql-command-options.html
 
 [mysql]
+# default-character-set=utf8
