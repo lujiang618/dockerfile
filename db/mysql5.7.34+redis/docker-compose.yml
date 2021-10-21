@@ -34,14 +34,14 @@ services:
     command:
       "redis-server /usr/local/etc/redis/redis.conf"
 volumes:
-    mysql_data:
-      driver: local
-    mysql_log:
-      driver: local
-    redis_data:
-      driver: local
-    redis_logs:
-      driver: local
+  mysql_data:
+    driver: local
+  mysql_log:
+    driver: local
+  redis_data:
+    driver: local
+  redis_logs:
+    driver: local
 networks:
     some:
      driver: bridge
