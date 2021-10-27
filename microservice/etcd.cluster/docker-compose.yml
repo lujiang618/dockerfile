@@ -1,34 +1,78 @@
-version: '3'
-networks:
-  byfn:
-
+version: '3.0'
 services:
   etcd1:
-    image: quay.io/coreos/etcd
+    image: bitnami/etcd:latest
     container_name: etcd1
-    command: etcd -name etcd1 -advertise-client-urls http://0.0.0.0:2379 -listen-client-urls http://0.0.0.0:2379 -listen-peer-urls http://0.0.0.0:2380 -initial-cluster-token etcd-cluster -initial-cluster "etcd1=http://etcd1:2380,etcd2=http://etcd2:2380,etcd3=http://etcd3:2380" -initial-cluster-state new
+    restart: always
+    environment:                # 环境变量 --env
+      - ALLOW_NONE_AUTHENTICATION=yes                       # 允许不用密码登录
+      - ETCD_NAME=etcd1                                     # etcd 的名字
+      - ETCD_INITIAL_ADVERTISE_PEER_URLS=http://etcd1:2380  # 列出这个成员的伙伴 URL 以便通告给集群的其他成员
+      - ETCD_LISTEN_PEER_URLS=http://0.0.0.0:2380           # 用于监听伙伴通讯的URL列表
+      - ETCD_LISTEN_CLIENT_URLS=http://0.0.0.0:2379         # 用于监听客户端通讯的URL列表
+      - ETCD_ADVERTISE_CLIENT_URLS=http://etcd1:2379        # 列出这个成员的客户端URL，通告给集群中的其他成员
+      - ETCD_INITIAL_CLUSTER_TOKEN=etcd-cluster             # 在启动期间用于 etcd 集群的初始化集群记号
+      - ETCD_INITIAL_CLUSTER=etcd1=http://etcd1:2380,etcd2=http://etcd2:2380,etcd3=http://etcd3:2380 # 为启动初始化集群配置
+      - ETCD_INITIAL_CLUSTER_STATE=new                      # 初始化集群状态
+    volumes:
+      - etcd1_data:/bitnami/etcd
     ports:
-      - 2379
-      - 2380
+      - 2379:2379
+      - 2380:2380
     networks:
       - byfn
 
   etcd2:
-    image: quay.io/coreos/etcd
+    image: bitnami/etcd:latest
     container_name: etcd2
-    command: etcd -name etcd2 -advertise-client-urls http://0.0.0.0:2379 -listen-client-urls http://0.0.0.0:2379 -listen-peer-urls http://0.0.0.0:2380 -initial-cluster-token etcd-cluster -initial-cluster "etcd1=http://etcd1:2380,etcd2=http://etcd2:2380,etcd3=http://etcd3:2380" -initial-cluster-state new
+    restart: always
+    environment:
+      - ALLOW_NONE_AUTHENTICATION=yes
+      - ETCD_NAME=etcd2
+      - ETCD_INITIAL_ADVERTISE_PEER_URLS=http://etcd2:2380
+      - ETCD_LISTEN_PEER_URLS=http://0.0.0.0:2380
+      - ETCD_LISTEN_CLIENT_URLS=http://0.0.0.0:2379
+      - ETCD_ADVERTISE_CLIENT_URLS=http://etcd2:2379
+      - ETCD_INITIAL_CLUSTER_TOKEN=etcd-cluster
+      - ETCD_INITIAL_CLUSTER=etcd1=http://etcd1:2380,etcd2=http://etcd2:2380,etcd3=http://etcd3:2380
+      - ETCD_INITIAL_CLUSTER_STATE=new
+    volumes:
+      - etcd2_data:/bitnami/etcd
     ports:
-      - 2379
-      - 2380
+      - 2378:2379
+      - 2377:2380
     networks:
       - byfn
 
   etcd3:
-    image: quay.io/coreos/etcd
+    image: bitnami/etcd:latest
     container_name: etcd3
-    command: etcd -name etcd3 -advertise-client-urls http://0.0.0.0:2379 -listen-client-urls http://0.0.0.0:2379 -listen-peer-urls http://0.0.0.0:2380 -initial-cluster-token etcd-cluster -initial-cluster "etcd1=http://etcd1:2380,etcd2=http://etcd2:2380,etcd3=http://etcd3:2380" -initial-cluster-state new
+    restart: always
+    environment:
+      - ALLOW_NONE_AUTHENTICATION=yes
+      - ETCD_NAME=etcd3
+      - ETCD_INITIAL_ADVERTISE_PEER_URLS=http://etcd3:2380
+      - ETCD_LISTEN_PEER_URLS=http://0.0.0.0:2380
+      - ETCD_LISTEN_CLIENT_URLS=http://0.0.0.0:2379
+      - ETCD_ADVERTISE_CLIENT_URLS=http://etcd3:2379
+      - ETCD_INITIAL_CLUSTER_TOKEN=etcd-cluster
+      - ETCD_INITIAL_CLUSTER=etcd1=http://etcd1:2380,etcd2=http://etcd2:2380,etcd3=http://etcd3:2380
+      - ETCD_INITIAL_CLUSTER_STATE=new
+    volumes:
+      - etcd3_data:/bitnami/etcd
     ports:
-      - 2379
-      - 2380
+      - 2376:2379
+      - 2375:2380
     networks:
       - byfn
+
+networks:
+  byfn:
+    driver: bridge
+volumes:
+  etcd1_data:         # 挂载到本地的数据卷名
+    driver: local
+  etcd2_data:
+    driver: local
+  etcd3_data:
+    driver: local

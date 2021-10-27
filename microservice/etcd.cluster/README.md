@@ -1,5 +1,16 @@
 
 
+# etcdctl
+
+```bash
+docker exec etcd1 etcdctl set dx '123'
+docker exec etcd3 etcdctl get dx
+docker exec etcd1 etcdctl ls
+
+docker exec etcd1 etcdctl user.rpc --prefix
+
+```
+
 
 # 使用步骤
 ```bash
