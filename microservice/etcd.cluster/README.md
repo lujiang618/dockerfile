@@ -2,10 +2,15 @@
 
 # etcdctl
 
-```bash
+```
+docker exec etcd1 etcdctl  member list
+
 docker exec etcd1 etcdctl set dx '123'
 docker exec etcd3 etcdctl get dx
 docker exec etcd1 etcdctl ls
+
+# 根据前缀查询
+docker exec etcd1 etcdctl get user.rpc --prefix
 
 docker exec etcd1 etcdctl user.rpc --prefix
 
