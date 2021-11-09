@@ -1,6 +1,6 @@
 
 
-elasticsearch/*
-logstash/*
-filebeat/*
-kibana/*
+elasticsearch/data
+elasticsearch/plugins
+logstash/pipeline
+filebeat/logs

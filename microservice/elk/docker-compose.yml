@@ -4,43 +4,55 @@ services:
     image: docker.elastic.co/beats/filebeat:7.15.1
     restart: "always"
     container_name: filebeat
+    privileged: true
     volumes:
+      - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
       - ./filebeat/logs/:/tools/logs/
     user: root   
     links:
       - logstash:logstash
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.15.1  #镜像
-    container_name: elk_elasticsearch  #定义容器名称
+    container_name: elasticsearch  #定义容器名称
     restart: always  #开机启动，失败也会一直重启
+    privileged: true
     environment:
-      - "cluster.name=elasticsearch" #设置集群名称为elasticsearch
-      - "discovery.type=single-node" #以单一节点模式启动
-      - "ES_JAVA_OPTS=-Xms512m -Xmx1024m" #设置使用jvm内存大小
+      - cluster.name=elasticsearch
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+      - TZ=Asia/Shanghai
+      - bootstrap.memory_lock=true
     volumes:
       - ./elasticsearch/plugins:/usr/share/elasticsearch/plugins #插件文件挂载
       - ./elasticsearch/data:/usr/share/elasticsearch/data #数据文件挂载
+      - ./elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
     ports:
       - 9200:9200
   kibana:
     image: docker.elastic.co/kibana/kibana:7.15.1
-    container_name: elk_kibana
+    container_name: kibana
     restart: always
+    privileged: true
     depends_on:
       - elasticsearch #kibana在elasticsearch启动之后再启动
     environment:
       - ELASTICSEARCH_URL=http://elasticsearch:9200 #设置访问elasticsearch的地址
+    volumes:
+      - ./kibana/config/kibana.yml:/opt/kibana/config/kibana.yml
     ports:
       - 5601:5601
   logstash:
     image: docker.elastic.co/logstash/logstash:7.15.1
-    container_name: elk_logstash
+    container_name: logstash
     restart: always
+    privileged: true
     volumes:
       - ./logstash/pipeline:/usr/share/logstash/pipeline/ #挂载logstash的配置文件
+      - ./logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
     depends_on:
       - elasticsearch #kibana在elasticsearch启动之后再启动
     links:
       - elasticsearch:es #可以用es这个域名访问elasticsearch服务
     ports:
       - 4560:4560
+      - 5044:5044
