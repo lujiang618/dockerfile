@@ -1,0 +1,38 @@
+version: '3'
+ 
+services:  
+  zipkin:
+    image: openzipkin/zipkin:2.21
+    container_name: zipkin
+    restart: always
+    # Environment settings are defined here https://github.com/openzipkin/zipkin/tree/1.19.0/zipkin-server#environment-variables
+    environment:
+      - TZ=Asia/Shanghai
+      - STORAGE_TYPE=mysql
+      # Point the zipkin at the storage backend
+      - MYSQL_DB=zipkin
+      - MYSQL_USER=root
+      - MYSQL_PASS=root
+      - MYSQL_HOST=mysql
+      - MYSQL_TCP_PORT=3306
+      # Uncomment to enable scribe
+      # - SCRIBE_ENABLED=true
+      # Uncomment to enable self-tracing
+      # - SELF_TRACING_ENABLED=true
+      # Uncomment to enable debug logging
+      # - JAVA_OPTS=-Dlogging.level.zipkin=DEBUG -Dlogging.level.zipkin2=DEBUG
+      - RABBIT_ADDRESSES=rabbitmq:5672
+      - RABBIT_USER=admin
+      - RABBIT_PASSWORD=gelu8888
+      - RABBIT_QUEUE=zipkin
+    ports:
+      # Port used for the Zipkin UI and HTTP Api
+      - 9411:9411
+      # Uncomment if you set SCRIBE_ENABLED=true
+      # - 9410:9410
+    networks:
+      - default 
+      - some
+networks: 
+  some: 
+    external: true    

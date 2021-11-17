@@ -13,11 +13,12 @@ services:
     ports:
       - '3306:3306'
     volumes:
-    - mysql_data:/var/lib/mysql
-    - mysql_log:/var/log/mysql
-    - ./mysql/:/etc/mysql/:rw
-    - ./mysql/init/:/docker-entrypoint-initdb.d/
+      - mysql_data:/var/lib/mysql
+      - mysql_log:/var/log/mysql
+      - ./mysql/:/etc/mysql/:rw
+      - ./mysql/init/:/docker-entrypoint-initdb.d/
     networks:
+      - default 
       - some
   # redis
   redis:
@@ -33,6 +34,9 @@ services:
       - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
     command:
       "redis-server /usr/local/etc/redis/redis.conf"
+    networks:
+      - default 
+      - some
 volumes:
   mysql_data:
     driver: local
@@ -44,5 +48,5 @@ volumes:
     driver: local
 networks:
     some:
-     driver: bridge
+      external: true
     
