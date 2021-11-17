@@ -5,6 +5,7 @@ services:
     image: openzipkin/zipkin:2.21
     container_name: zipkin
     restart: always
+    privileged: true
     # Environment settings are defined here https://github.com/openzipkin/zipkin/tree/1.19.0/zipkin-server#environment-variables
     environment:
       - TZ=Asia/Shanghai
