@@ -1,0 +1,5 @@
+cluster.name: "docker-cluster"
+#任意服务器都可以访问
+network.host: 0.0.0.0
+#配置宿主机ip地址,这样其他应用才能访问到es
+network.publish_host: 192.168.100.21
