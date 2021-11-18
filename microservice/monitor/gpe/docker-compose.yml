@@ -10,6 +10,7 @@ services:
         volumes:
             - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
             - ./prometheus/node_down.yml:/etc/prometheus/node_down.yml
+            - ./prometheus/targets.json:/etc/prometheus/targets.json
             - prometheusdata:/prometheus
         command:
             - '--config.file=/etc/prometheus/prometheus.yml'
