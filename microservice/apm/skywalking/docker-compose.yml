@@ -1,0 +1,53 @@
+version: '3.5'
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.15.1
+    container_name: elasticsearch
+    restart: always
+    ports:
+      - 9200:9200
+    environment:
+      discovery.type: single-node  #es单机模式
+      TZ: Asia/Shanghai  #时区设置
+      TAKE_FILE_OWNERSHIP: 'true'  #解决 volumes 挂载权限问题
+      ES_JAVA_OPTS: -Xms256m -Xmx256m ##jvm内存分配为256MB
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - ./elasticsearch/data:/usr/share/elasticsearch/data
+  oap:
+    image: apache/skywalking-oap-server:8.3.0-es7
+    container_name: skywalking-oap
+    depends_on:
+      - elasticsearch
+    links:
+      - elasticsearch
+    restart: always
+    ports:
+      - 11800:11800
+      - 12800:12800
+    environment:
+      SW_STORAGE: elasticsearch7
+      SW_STORAGE_ES_CLUSTER_NODES: elasticsearch:9200
+      SW_HEALTH_CHECKER: default
+      SW_TELEMETRY: prometheus
+    healthcheck:
+      test: ["CMD", "./bin/swctl", "ch"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+  ui:
+    image: apache/skywalking-ui:8.3.0
+    container_name: skywalking-ui
+    depends_on:
+      - oap
+    links:
+      - oap
+    restart: always
+    ports:
+      - 8088:8080
+    environment:
+      SW_OAP_ADDRESS: oap:12800
