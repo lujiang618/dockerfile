@@ -15,7 +15,7 @@ services:
     restart: always
     environment:
       - SPAN_STORAGE_TYPE=elasticsearch
-      - ES_SERVER_URLS=http://192.168.16.6:9200
+      - ES_SERVER_URLS=http://192.168.16.4:9200
       - LOG_LEVEL=debug
 
   jaeger-agent:
@@ -42,10 +42,11 @@ services:
     restart: always
     environment:
       - SPAN_STORAGE_TYPE=elasticsearch
-      - ES_SERVER_URLS=http://192.168.16.6:9200
+      - ES_SERVER_URLS=http://192.168.16.4:9200
       - LOG_LEVEL=debug
     ports:
       - "16686:16686"
+      - "16685:16685"
     networks:
       - some
 
