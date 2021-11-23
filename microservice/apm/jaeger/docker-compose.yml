@@ -15,7 +15,7 @@ services:
     restart: always
     environment:
       - SPAN_STORAGE_TYPE=elasticsearch
-      - ES_SERVER_URLS=http://192.168.16.4:9200
+      - ES_SERVER_URLS=http://es7:9200
       - LOG_LEVEL=debug
 
   jaeger-agent:
@@ -42,7 +42,7 @@ services:
     restart: always
     environment:
       - SPAN_STORAGE_TYPE=elasticsearch
-      - ES_SERVER_URLS=http://192.168.16.4:9200
+      - ES_SERVER_URLS=http://es7:9200
       - LOG_LEVEL=debug
     ports:
       - "16686:16686"
@@ -50,6 +50,16 @@ services:
     networks:
       - some
 
+  jaeger-dependencies:
+    image: jaegertracing/spark-dependencies
+    container_name: jaeger-dependencies
+    restart: always
+    environment:
+      - STORAGE=elasticsearch
+      - ES_NODES=http://es7:9200
+      - LOG_LEVEL=debug
+    networks:
+      - some
 networks:
   some: 
     external: true 

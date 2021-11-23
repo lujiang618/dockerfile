@@ -21,3 +21,4 @@
 + [php7.2+nginx](php/php7/README.md)
 + [genkins](jenkins/readme.md)
 + [gitlab](gitlab/readme.md)
++ [基础服务的docker-compose配置文件](https://gitee.com/zxx95/docker-compose)

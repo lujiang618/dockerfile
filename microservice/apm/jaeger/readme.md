@@ -6,6 +6,9 @@ docker exec -it jaeger-collector ping es7
 
 ```
 
+# 注意
+- jaeger-query的16685端口 conn refuse， [16685资料](https://www.jaegertracing.io/docs/1.28/deployment/)
+
 # 访问jaeger界面
 localhost:16686
 
