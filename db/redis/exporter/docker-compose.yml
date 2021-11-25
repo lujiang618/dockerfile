@@ -1,0 +1,20 @@
+version: '3'
+services:
+   # redis
+  redis:
+    container_name: redis-exporter
+    image: oliver006/redis_exporter:v1.31.4
+    restart: always
+    privileged: true
+    ports:
+      - 9121:9121
+    command:
+      - "--redis.addr=redis://redis:6379"
+      - "--redis.password=gelu8888"
+    networks:
+      - default 
+      - some
+
+networks:
+    some:
+      external: true

@@ -13,10 +13,11 @@ services:
             - ./prometheus/targets.json:/etc/prometheus/targets.json
             - prometheusdata:/prometheus
         command:
-            - '--config.file=/etc/prometheus/prometheus.yml'
-            - '--storage.tsdb.path=/prometheus'
+            - --config.file:/etc/prometheus/prometheus.yml # 指定配置文件  
+            - --storage.tsdb.path:/prometheus
+            - --web.enable-lifecycle # 运行通过 HTTP 接口重新加载配置 (POST localhost:9090/-/reload)  
         ports:
-            - "9090:9090"
+            - 9090:9090
         networks:
             - some
 
@@ -29,7 +30,7 @@ services:
         volumes:
             - ./alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml
         ports:
-            - "9093:9093"
+            - 9093:9093
         networks:
             - some
 
@@ -42,7 +43,7 @@ services:
         volumes:
             - grafanadata:/var/lib/grafana
         ports:
-            - "3001:3000"
+            - 3001:3000
         networks:
             - some
 

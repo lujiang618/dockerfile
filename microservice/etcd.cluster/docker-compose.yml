@@ -20,7 +20,7 @@ services:
       - 2379:2379
       - 2380:2380
     networks:
-      - byfn
+      - some
 
   etcd2:
     image: bitnami/etcd:latest
@@ -42,7 +42,7 @@ services:
       - 2378:2379
       - 2377:2380
     networks:
-      - byfn
+      - some
 
   etcd3:
     image: bitnami/etcd:latest
@@ -64,11 +64,12 @@ services:
       - 2376:2379
       - 2375:2380
     networks:
-      - byfn
+      - some
 
 networks:
-  byfn:
-    driver: bridge
+  some:
+    external: true 
+    
 volumes:
   etcd1_data:         # 挂载到本地的数据卷名
     driver: local
