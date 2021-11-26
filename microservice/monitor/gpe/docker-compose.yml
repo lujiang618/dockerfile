@@ -8,14 +8,12 @@ services:
         restart: always
         privileged: true
         volumes:
-            - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-            - ./prometheus/node_down.yml:/etc/prometheus/node_down.yml
-            - ./prometheus/targets.json:/etc/prometheus/targets.json
+            - ./prometheus/conf/:/etc/prometheus/
             - prometheusdata:/prometheus
         command:
-            - --config.file:/etc/prometheus/prometheus.yml # 指定配置文件  
-            - --storage.tsdb.path:/prometheus
-            - --web.enable-lifecycle # 运行通过 HTTP 接口重新加载配置 (POST localhost:9090/-/reload)  
+            - '--config.file=/etc/prometheus/prometheus.yml' # 指定配置文件  
+            - '--storage.tsdb.path=/prometheus'
+            - '--web.enable-lifecycle' # 运行通过 HTTP 接口重新加载配置 (POST localhost:9090/-/reload)  
         ports:
             - 9090:9090
         networks:
@@ -48,12 +46,12 @@ services:
             - some
 
     node-exporter:
-        image: quay.io/prometheus/node-exporter
+        image: prom/node-exporter:v1.3.0
         container_name: node-exporter
         hostname: node-exporter
         restart: always
         ports:
-            - "9100:9100"
+            - 9100:9100
         networks:
             - some
 
