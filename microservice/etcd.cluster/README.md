@@ -34,3 +34,11 @@ docker-compose stop # 停止容器
 
 
 ```
+
+# 注意
+1. 可能会出现image拉去不下来。多试几次可能会成功
+2. [etcd客户端](http://etcdmanager.io/)
+
+
+# 参考资料
+- [docker-compose 搭建 etcd 集群](https://blog.csdn.net/qq_30145355/article/details/115468341)
