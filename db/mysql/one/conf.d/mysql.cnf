@@ -1,0 +1,6 @@
+[mysql]
+# sql_safe_updates=0
+
+
+# 5.7 没有init-file
+# init-file = /etc/mysql/conf.d/init.sql

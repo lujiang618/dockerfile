@@ -3,7 +3,7 @@ services:
   # mysql
   mysql:
     container_name: mysql
-    image: mysql:5.7
+    image: mysql:5.7.16
     restart: always
     environment:
       - TZ=Asia/Shanghai
@@ -20,31 +20,10 @@ services:
     networks:
       - default 
       - some
-  # redis
-  redis:
-    container_name: redis
-    image: redis:6.0
-    restart: always
-    privileged: true
-    ports:
-      - '6379:6379'
-    volumes:
-      - redis_data:/data
-      - redis_logs:/data/logs
-      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
-    command:
-      "redis-server /usr/local/etc/redis/redis.conf"
-    networks:
-      - default 
-      - some
 volumes:
   mysql_data:
     driver: local
   mysql_log:
-    driver: local
-  redis_data:
-    driver: local
-  redis_logs:
     driver: local
 networks:
     some:

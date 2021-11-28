@@ -1,0 +1,6 @@
+
+
+elasticsearch/data
+elasticsearch/plugins
+logstash/pipeline
+filebeat/logs

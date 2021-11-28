@@ -1,0 +1,29 @@
+version: '3'
+services:
+   # redis
+  redis:
+    container_name: rediso
+    image: redis:6.0
+    restart: always
+    privileged: true
+    ports:
+      - 6379:6379
+    volumes:
+      - redis_data:/data
+      - redis_logs:/data/logs
+      - ./conf/redis.conf:/usr/local/etc/redis/redis.conf
+    command:
+      "redis-server /usr/local/etc/redis/redis.conf"
+    networks:
+      - default 
+      - some
+
+networks:
+    some:
+      external: true
+
+volumes:
+  redis_data:
+    driver: local
+  redis_logs:
+    driver: local

@@ -1,0 +1,11 @@
+[
+    {
+        "targets": ["172.17.0.1:7001"],
+        "labels": {
+            "job": "auth-api",
+            "app": "auth-api",
+            "env": "test",
+            "instance": "172.17.0.1:8001"
+        }
+    }
+]
