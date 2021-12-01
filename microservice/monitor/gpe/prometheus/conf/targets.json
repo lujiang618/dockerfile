@@ -2,10 +2,42 @@
     {
         "targets": ["172.17.0.1:7001"],
         "labels": {
-            "job": "auth-api",
-            "app": "auth-api",
+            "job": "dxyp",
+            "app": "auth.api",
             "env": "test",
+            "type": "api",
             "instance": "172.17.0.1:8001"
         }
+    },
+    {
+        "targets": ["172.17.0.1:7002"],
+        "labels": {
+            "job": "dxyp",
+            "app": "user.rpc",
+            "env": "test",
+            "type": "rpc",
+            "instance": "172.17.0.1:8002"
+        }
+    },
+    {
+        "targets": ["172.17.0.1:7003"],
+        "labels": {
+            "job": "dxyp",
+            "app": "admin.api",
+            "env": "test",
+            "type": "api",
+            "instance": "172.17.0.1:8003"
+        }
+    },
+    {
+        "targets": ["172.17.0.1:7005"],
+        "labels": {
+            "job": "dxyp",
+            "app": "dxAuth.api",
+            "env": "test",
+            "type": "api",
+            "instance": "172.17.0.1:8005"
+        }
     }
+   
 ]

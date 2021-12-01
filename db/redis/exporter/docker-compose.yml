@@ -9,7 +9,7 @@ services:
     ports:
       - 9121:9121
     command:
-      - "--redis.addr=redis://redis:6379"
+      - "--redis.addr=redis://172.17.0.1:6379"
       - "--redis.password=gelu8888"
     networks:
       - default 

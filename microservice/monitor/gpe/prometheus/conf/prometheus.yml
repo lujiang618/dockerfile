@@ -18,6 +18,8 @@ rule_files:
   # - "first_rules.yml"
   # - "second_rules.yml"
   - 'prometheus.rules.yml'
+  - 'prometheus.alerting.rules.yml'
+  - 'node_down.yml'
 
 # A scrape configuration containing exactly one endpoint to scrape:
 # Here it's Prometheus itself.
@@ -29,29 +31,29 @@ scrape_configs:
     # scheme defaults to 'http'.
 
     static_configs:
-      - targets: ["localhost:9090"]
+      - targets: ["172.17.0.1:9090"]
 
   - job_name: "jaeger"
     static_configs:
-      - targets: ["jaeger-collector:14269", "jaeger-query:16687", "jaeger-agent:14271"]
+      - targets: ["192.168.99.103:14269", "192.168.99.103:16687", "192.168.99.103:14271"]
 
   - job_name: "etcd"
     static_configs:
-      - targets: ["etcd1:2379", "etcd2:2379", "etcd3:2379"]
+      - targets: ["172.17.0.1:2379", "172.17.0.1:2378", "172.17.0.1:2376"]
 
   - job_name: "redis-exporter"
     static_configs:
-      - targets: ["redis-exporter:9121"]
+      - targets: ["172.17.0.1:9121"]
 
   - job_name: "mysql-exporter"
     static_configs:
-      - targets: ["mysql-exporter:9104"]
+      - targets: ["172.17.0.1:9104"]
 
   - job_name: node
     static_configs:
-    - targets: ['node-exporter:9100']
+    - targets: ['172.17.0.1:9100']
 
-  - job_name: 'file_ds'
+  - job_name: 'dxyp'
     file_sd_configs:
     - files:
       - targets.json
