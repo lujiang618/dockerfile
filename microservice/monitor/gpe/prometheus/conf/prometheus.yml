@@ -53,6 +53,10 @@ scrape_configs:
     static_configs:
     - targets: ['172.17.0.1:9100']
 
+  - job_name: "grafana"
+    static_configs:
+      - targets: ["172.17.0.1:3001/metrics"]
+
   - job_name: 'dxyp'
     file_sd_configs:
     - files:
