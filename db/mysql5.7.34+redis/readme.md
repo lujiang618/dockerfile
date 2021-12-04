@@ -5,7 +5,7 @@ chmod +x ./rebuild.sh
 
 ```sql
 -- 容器创建成功后，进入mysql容器，给root用户访问权限
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'root' WITH GRANT OPTION
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'root' WITH GRANT OPTION;
 
 -- 查看是否开启了binlog
 show variables like 'log_bin';
