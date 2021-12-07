@@ -1,4 +1,5 @@
 http://localhost:9999/nacos
+nacos/nacos 
 
 http://localhost:9999/nacos/actuator/prometheus
 

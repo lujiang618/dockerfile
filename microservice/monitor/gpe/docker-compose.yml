@@ -41,7 +41,7 @@ services:
         volumes:
             - grafanadata:/var/lib/grafana
         ports:
-            - 3001:3000
+            - 3000:3000
         networks:
             - some
 

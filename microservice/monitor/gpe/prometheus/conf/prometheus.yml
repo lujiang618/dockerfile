@@ -55,12 +55,17 @@ scrape_configs:
 
   - job_name: "grafana"
     static_configs:
-      - targets: ["172.17.0.1:3001"]
+      - targets: ["172.17.0.1:3000"]
   
   - job_name: "nacos"
     metrics_path: '/nacos/actuator/prometheus'
     static_configs:
       - targets: ["172.17.0.1:9999"]
+
+  - job_name: "apollo"
+    metrics_path: '/prometheus'
+    static_configs:
+      - targets: ["172.17.0.1:8090"]
 
   - job_name: 'dxyp'
     file_sd_configs:

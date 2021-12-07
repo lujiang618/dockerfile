@@ -14,6 +14,7 @@ services:
       MYSQL_SERVICE_USER: root
       MYSQL_SERVICE_PASSWORD: root
       NACOS_APPLICATION_PORT: 9999
+      NACOS_AUTH_ENABLE: "true" # 激活权限
       JVM_XMS: 512m
       JVM_MMS: 320m
     volumes:
