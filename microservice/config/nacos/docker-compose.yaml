@@ -18,9 +18,9 @@ services:
       JVM_MMS: 320m
     volumes:
       - logs:/home/nacos/logs
+      - ./init.d/application.properties:/home/nacos/conf/application.properties
     ports:
       - "9999:9999"
-      - "9848:9848"
       - "9555:9555"
     networks:
       - default 
