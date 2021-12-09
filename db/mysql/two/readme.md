@@ -28,4 +28,11 @@ SHOW VARIABLES LIKE '%read_only%'; #查看只读状态
 
 show databases;
 ```
+
+# 注意
+mysql 5.7.35版本自带了ssl的证书
+```
+show variables like '%ssl%';
+```
 # 参考资料
+- [mysql启动时的几个warning解决方法](https://blog.csdn.net/jolly10/article/details/80346784)
