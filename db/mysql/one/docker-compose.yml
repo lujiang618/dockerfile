@@ -3,7 +3,7 @@ services:
   # mysql
   mysql:
     container_name: mysql
-    image: mysql:5.7.16
+    image: mysql:${MYSQL_VERSION}
     restart: always
     environment:
       - TZ=Asia/Shanghai
@@ -13,17 +13,17 @@ services:
     ports:
       - '3306:3306'
     volumes:
-      - mysql_data:/var/lib/mysql
-      - mysql_log:/var/log/mysql
-      - ./mysql/:/etc/mysql/:rw
-      - ./mysql/init/:/docker-entrypoint-initdb.d/
+      - data:/var/lib/mysql
+      - log:/var/log/mysql
+      - ./conf/:/etc/mysql/:rw
+      - ./init/:/docker-entrypoint-initdb.d/
     networks:
       - default 
       - some
 volumes:
-  mysql_data:
+  data:
     driver: local
-  mysql_log:
+  log:
     driver: local
 networks:
     some:
