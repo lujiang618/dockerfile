@@ -1,7 +1,7 @@
 
 1. network_mode: "host"
 2. 集群是主主机群+主从集群的模式
-
+3. Redis集群下只有db0,不支持多db, [官方说明](https://redis.io/topics/cluster-spec)
 ![img](https://upload-images.jianshu.io/upload_images/20671991-1858c9d30b433f27.png?imageMogr2/auto-orient/strip|imageView2/2/w/1191/format/webp)
 
 # 构建集群
