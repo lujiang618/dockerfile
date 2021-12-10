@@ -1,0 +1,105 @@
+version: '3'
+services: 
+  redis1:
+    container_name: redis1
+    image: redis:${VERSION}
+    restart: always
+    privileged: true
+    environment:
+      - REDISCLI_AUTH=gelu8888
+    stdin_open: true # 标准输入打开
+    tty: true # 后台运行不退出
+    volumes:
+      - redis_logs1:/data/logs
+      - ./conf/redis1.conf:/usr/local/etc/redis/redis.conf
+    command:
+      "redis-server /usr/local/etc/redis/redis.conf"
+    network_mode: "host"
+  redis2:
+    container_name: redis2
+    image: redis:${VERSION}
+    restart: always
+    privileged: true
+    environment:
+      - REDISCLI_AUTH=gelu8888
+    stdin_open: true # 标准输入打开
+    tty: true # 后台运行不退出
+    volumes:
+      - redis_logs2:/data/logs
+      - ./conf/redis2.conf:/usr/local/etc/redis/redis.conf
+    command:
+      "redis-server /usr/local/etc/redis/redis.conf"
+    network_mode: "host"
+  redis3:
+    container_name: redis3
+    image: redis:${VERSION}
+    restart: always
+    privileged: true
+    environment:
+      - REDISCLI_AUTH=gelu8888
+    stdin_open: true # 标准输入打开
+    tty: true # 后台运行不退出
+    volumes:
+      - redis_logs3:/data/logs
+      - ./conf/redis3.conf:/usr/local/etc/redis/redis.conf
+    command:
+      "redis-server /usr/local/etc/redis/redis.conf"
+    network_mode: "host"
+  redis4:
+    container_name: redis4
+    image: redis:${VERSION}
+    restart: always
+    privileged: true
+    environment:
+      - REDISCLI_AUTH=gelu8888
+    stdin_open: true # 标准输入打开
+    tty: true # 后台运行不退出
+    volumes:
+      - redis_logs4:/data/logs
+      - ./conf/redis4.conf:/usr/local/etc/redis/redis.conf
+    command:
+      "redis-server /usr/local/etc/redis/redis.conf"
+    network_mode: "host"
+  redis5:
+    container_name: redis5
+    image: redis:${VERSION}
+    restart: always
+    privileged: true
+    environment:
+      - REDISCLI_AUTH=gelu8888
+    stdin_open: true # 标准输入打开
+    tty: true # 后台运行不退出
+    volumes:
+      - redis_logs5:/data/logs
+      - ./conf/redis5.conf:/usr/local/etc/redis/redis.conf
+    command:
+      "redis-server /usr/local/etc/redis/redis.conf"
+    network_mode: "host"
+  redis6:
+    container_name: redis6
+    image: redis:${VERSION}
+    restart: always
+    privileged: true
+    environment:
+      - REDISCLI_AUTH=gelu8888
+    stdin_open: true # 标准输入打开
+    tty: true # 后台运行不退出
+    volumes:
+      - redis_logs6:/data/logs
+      - ./conf/redis6.conf:/usr/local/etc/redis/redis.conf
+    command:
+      "redis-server /usr/local/etc/redis/redis.conf"
+    network_mode: "host"
+volumes:
+  redis_logs1:
+    driver: local
+  redis_logs2:
+    driver: local
+  redis_logs3:
+    driver: local
+  redis_logs4:
+    driver: local
+  redis_logs5:
+    driver: local
+  redis_logs6:
+    driver: local
