@@ -1,0 +1,26 @@
+version: '3.3'
+services:
+  dtm:
+    image: 'yedf/dtm'
+    container_name: dtm
+    restart: always
+    environment:
+      IS_DOCKER: 1
+      DB_HOST: 172.17.0.1
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_PORT: 3306
+      TRANS_CRON_INTERVAL: 10
+    ports:
+      - '36789:36789'
+      - '36790:36790'
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    extra_hosts:
+      - 'local.dtm.com:host-gateway'
+    networks:
+      - some
+networks:
+  some: 
+    external: true 
