@@ -11,9 +11,9 @@
 ```
 gic clone git@github.com:dtm-labs/dtm.git
 cd dtm/sqls
-docker exec -i mysql mysql -u root -proot < dtmcli.barrier.mysql.sql
-docker exec -i mysql mysql -u root -proot < dtmsvr.storage.mysql.sql
-docker exec -i mysql mysql -u root -proot < busi.mysql.sql # dtm的demo用到这个库
+docker exec -i mysql mysql -u root -proot --default-character-set=utf8mb4 < dtmcli.barrier.mysql.sql
+docker exec -i mysql mysql -u root -proot --default-character-set=utf8mb4 < dtmsvr.storage.mysql.sql
+docker exec -i mysql mysql -u root -proot --default-character-set=utf8mb4 < busi.mysql.sql # dtm的demo用到这个库
 ```
 
 # 环境变量
