@@ -1,16 +1,22 @@
 version: '3.3'
 services:
   dtm:
-    image: 'yedf/dtm'
+    image: yedf/dtm:1.8
     container_name: dtm
     restart: always
     environment:
       IS_DOCKER: 1
-      DB_HOST: 172.17.0.1
-      DB_USER: root
-      DB_PASSWORD: root
-      DB_PORT: 3306
+      STORE_DRIVER: mysql
+      STORE_HOST: mysql
+      STORE_USER: root
+      STORE_PASSWORD: root
+      STORE_PORT: 3306
       TRANS_CRON_INTERVAL: 10
+      RETRY_INTERVAL: 10
+      TIMEOUT_TO_FAIL: 10
+      MICRO_SERVICE_DRIVER: dtm-driver-gozero
+      MICRO_SERVICE_TARGET: etcd://etcd1:2379/dtmservice
+      MICRO_SERVICE_END_POINT: localhost:36790
     ports:
       - '36789:36789'
       - '36790:36790'
