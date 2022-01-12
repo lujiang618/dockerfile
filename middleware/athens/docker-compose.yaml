@@ -1,0 +1,25 @@
+version: '3'
+services:
+  # myathenssql
+  athens:
+    container_name: athens
+    image: gomods/athens:v0.11.0
+    restart: always
+    environment:
+      - TZ=Asia/Shanghai
+      - ATHENS_DISK_STORAGE_ROOT=var/lib/athens
+      - ATHENS_STORAGE_TYPE=disk
+    ports:
+      - 3000:3000
+    volumes:
+      - data:/var/lib/athens
+    networks:
+      - default 
+      - some
+volumes:
+  data:
+    driver: local
+networks:
+    some:
+      external: true
+    
