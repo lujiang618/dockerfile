@@ -1,4 +1,5 @@
 cluster.name: "docker-cluster"
+cluster.max_shards_per_node: 10000
 #任意服务器都可以访问
 network.host: 0.0.0.0
 #配置宿主机ip地址,这样其他应用才能访问到es

@@ -16,7 +16,7 @@ services:
     environment:
       - SPAN_STORAGE_TYPE=elasticsearch
       - ES_SERVER_URLS=http://es7:9200
-      - LOG_LEVEL=debug
+      - LOG_LEVEL=error
 
   jaeger-agent:
     image: jaegertracing/jaeger-agent:1.28
@@ -33,7 +33,7 @@ services:
     restart: always
     environment:
       - REPORTER_GRPC_HOST_PORT=jaeger-collector:14250
-      - LOG_LEVEL=debug
+      - LOG_LEVEL=error
     depends_on:
       - jaeger-collector
 
@@ -44,7 +44,7 @@ services:
     environment:
       - SPAN_STORAGE_TYPE=elasticsearch
       - ES_SERVER_URLS=http://es7:9200
-      - LOG_LEVEL=debug
+      - LOG_LEVEL=error
     ports:
       - "16686:16686"
       - "16685:16685"
@@ -59,7 +59,7 @@ services:
     environment:
       - STORAGE=elasticsearch
       - ES_NODES=http://es7:9200
-      - LOG_LEVEL=debug
+      - LOG_LEVEL=error
     networks:
       - some
 networks:

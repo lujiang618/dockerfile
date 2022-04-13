@@ -1,9 +1,12 @@
 
+
+```
+docker volume rm gitlab_config gitlab_data gitlab_log
+
+```
 # 初始化root密码
 ```
-# 进入容器内部
-# docker exec -i gitlab sh -c 'exec gitlab-rails console -e production'  # 好像也可以吧
-docker exec -it gitlab sh 
+docker exec -it gitlab gitlab-rails console -e production
 
 gitlab-rails console -e production
 u=User.where(id:1).first
@@ -32,3 +35,5 @@ url: http://gitlab.flower.com:8100/users/sign_in 通过root账号登录
 - [Linux初装Gitlab14重置web登录root密码](https://blog.csdn.net/timonium/article/details/119450240)
 - [Docker折腾记: (3)Docker Compose构建Gitlab,从配置(https,邮箱验证)到基本可用](https://blog.csdn.net/crper/article/details/81291034)
 - [https://www.centoscn.vip/2816.html](https://www.centoscn.vip/2816.html)
+- [Docker 搭建 GitLab-ssl](https://blog.csdn.net/qq_36381626/article/details/115320681)
+- [正确使用 Docker 搭建 GitLab 只要半分钟](https://zhuanlan.zhihu.com/p/49499229)
