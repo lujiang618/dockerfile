@@ -26,12 +26,9 @@ services:
       - "33066:3306"
     restart: always
     hostname: mysql-slave
-<<<<<<< HEAD
     networks:
       - some
 
 networks:
     some:
       external: true
-=======
->>>>>>> 75ba9c0fda3bb1800b47974bb259a93b4e2bc700
