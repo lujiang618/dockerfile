@@ -1,0 +1,26 @@
+version: '3'
+services:
+  rabbitmq:
+    image: rabbitmq:3.9.8
+    container_name: rabbitmq
+    restart: always
+    privileged: true
+    ports:
+      - 15672:15672
+      - 5672:5672
+    volumes:
+      - ./conf.d:/etc/rabbitmq/conf.d
+      - data:/var/lib/rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=gelu8888
+    networks:
+      - default 
+      - some
+      
+volumes:
+  data:
+    driver: local
+networks: 
+  some: 
+    external: true   

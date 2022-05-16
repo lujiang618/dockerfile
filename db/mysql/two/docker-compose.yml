@@ -1,0 +1,58 @@
+version: '3.8'
+services:
+  mysql-master:
+    container_name: mysql-master 
+    image: mysql:${MYSQL_VERSION}
+    restart: always
+    ports:
+      - 3340:3306 
+    privileged: true
+    volumes:
+      - master_data:/var/lib/mysql
+      - master_log:/var/log/mysql
+      - ./master/conf/my.cnf:/etc/mysql/my.cnf
+      - ./master/init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+    command: [
+        '--character-set-server=utf8mb4',
+        '--collation-server=utf8mb4_general_ci',
+        '--max_connections=3000'
+    ]
+    networks:
+      - some
+      
+  mysql-slave:
+    container_name: mysql-slave 
+    image: mysql:${MYSQL_VERSION}
+    restart: always
+    ports:
+      - 3341:3306 
+    privileged: true
+    volumes:
+      - slave_data:/var/lib/mysql:rw
+      - slave_log:/var/log/mysql:rw
+      - ./slave/conf/my.cnf:/etc/mysql/my.cnf
+      - ./slave/init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+    command: [
+        '--character-set-server=utf8mb4',
+        '--collation-server=utf8mb4_general_ci',
+        '--max_connections=3000'
+    ]
+    networks:
+      - some    
+
+volumes:
+  master_data:
+    driver: local
+  master_log:
+    driver: local
+  slave_data:
+    driver: local
+  slave_log:
+    driver: local  
+networks:
+  some:
+    external: true

@@ -1,0 +1,16 @@
+#
+# ** THIS IS AN AUTO-GENERATED FILE **
+#
+
+# Default Kibana configuration for docker target
+server.host: "0"
+server.shutdownTimeout: "5s"
+elasticsearch.hosts: [ "http://es7:9200" ]
+monitoring.ui.container.elasticsearch.enabled: true
+
+## X-Pack security credentials
+#修改登录账号密码
+elasticsearch.username: kibana
+elasticsearch.password: gelu8888
+## 将Kinbana 界面设置成中文 如果习惯英文可以删除此配置默认是英文配置
+i18n.locale: zh-CN

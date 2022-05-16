@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.15.1
+    container_name: kibana
+    restart: always
+    privileged: true
+    environment:
+      - ELASTICSEARCH_URL=http://es7:9200 #设置访问elasticsearch的地址
+    volumes:
+      - ./config/kibana.yml:/opt/kibana/config/kibana.yml
+    ports:
+      - 5601:5601
+    networks:
+      - some
+networks: 
+  some: 
+    external: true   

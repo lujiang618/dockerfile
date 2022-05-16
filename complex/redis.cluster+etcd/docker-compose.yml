@@ -1,0 +1,63 @@
+version: '3'
+services: 
+  redis1:
+    container_name: redis1
+    image: redis:6.0
+    restart: always
+    privileged: true
+    ports:
+      - '6360:6360'
+    volumes:
+      - redis_logs1:/data/logs
+      - ./redis/redis1.conf:/usr/local/etc/redis/redis.conf
+    command:
+      "redis-server /usr/local/etc/redis/redis.conf"
+    networks:
+      - consistency
+  redis2:
+    container_name: redis2
+    image: redis:6.0
+    restart: always
+    privileged: true
+    ports:
+      - '6361:6361'
+    volumes:
+      - redis_logs2:/data/logs
+      - ./redis/redis2.conf:/usr/local/etc/redis/redis.conf
+    command:
+      "redis-server /usr/local/etc/redis/redis.conf"
+    networks:
+      - consistency
+  redis3:
+    container_name: redis3
+    image: redis:6.0
+    restart: always
+    privileged: true
+    ports:
+      - '6362:6362'
+    volumes:
+      - redis_logs3:/data/logs
+      - ./redis/redis3.conf:/usr/local/etc/redis/redis.conf
+    command:
+      "redis-server /usr/local/etc/redis/redis.conf"
+    networks:
+      - consistency
+  etcd:
+    image: quay.io/coreos/etcd
+    container_name: etcd1
+    command: etcd -name etcd1 -advertise-client-urls http://0.0.0.0:2379 -listen-client-urls http://0.0.0.0:2379 -listen-peer-urls http://0.0.0.0:2380 -initial-cluster-token etcd-cluster -initial-cluster "etcd1=http://etcd1:2380" -initial-cluster-state new
+    ports:
+      - 2379
+      - 2380
+    networks:
+      - consistency
+volumes:
+  redis_logs1:
+    driver: local
+  redis_logs2:
+    driver: local
+  redis_logs3:
+    driver: local
+networks:
+  consistency:
+    driver: bridge

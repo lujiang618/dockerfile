@@ -1,0 +1,31 @@
+version: '3'
+services:
+  # mysql
+  mysql:
+    container_name: mysql
+    image: mysql:${MYSQL_VERSION}
+    restart: always
+    environment:
+      - TZ=Asia/Shanghai
+      - MYSQL_DATABASE=some
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+    ports:
+      - '3306:3306'
+    volumes:
+      - data:/var/lib/mysql
+      - log:/var/log/mysql
+      - ./conf/:/etc/mysql/:rw
+      - ./init/:/docker-entrypoint-initdb.d/
+    networks:
+      - default 
+      - some
+volumes:
+  data:
+    driver: local
+  log:
+    driver: local
+networks:
+    some:
+      external: true
+    

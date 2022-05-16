@@ -1,0 +1,52 @@
+version: '3'
+services:
+  # mysql
+  mysql:
+    container_name: mysql
+    image: mysql:5.7
+    restart: always
+    environment:
+      - TZ=Asia/Shanghai
+      - MYSQL_DATABASE=some
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+    ports:
+      - '3306:3306'
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - mysql_log:/var/log/mysql
+      - ./mysql/:/etc/mysql/:rw
+      - ./mysql/init/:/docker-entrypoint-initdb.d/
+    networks:
+      - default 
+      - some
+  # redis
+  redis:
+    container_name: redis
+    image: redis:6.0
+    restart: always
+    privileged: true
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis_data:/data
+      - redis_logs:/data/logs
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+    command:
+      "redis-server /usr/local/etc/redis/redis.conf"
+    networks:
+      - default 
+      - some
+volumes:
+  mysql_data:
+    driver: local
+  mysql_log:
+    driver: local
+  redis_data:
+    driver: local
+  redis_logs:
+    driver: local
+networks:
+    some:
+      external: true
+    
