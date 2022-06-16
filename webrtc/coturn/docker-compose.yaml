@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  coturn:
+    image: coturn/coturn:${version}
+    container_name: coturn
+    privileged: true
+    ports:
+      - 3478:3478
+      - 5349:5349
+      - 3478:3478/udp
+      - 5349:5349/udp
+      - 49152-65535:49152-65535/udp
+    networks:
+      - some
+    restart: always
+    environment:
+      - log-file=stdout
+      - external-ip='${detect-external-ip}
+      - min-port=49160
+      - max-port=49200
+      - realm=1
+    volumes:
+      - ./conf/turnserver.conf:/etc/turnserver.conf1
+networks:
+  some: 
+    external: true 
