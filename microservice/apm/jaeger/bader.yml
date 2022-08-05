@@ -4,6 +4,7 @@ services:
   jaeger:
     image: jaegertracing/all-in-one:1.26
     container_name: jaeger
+    privileged: true
     # 解决时钟漂移带来的计算出正数的问题
     command: ["--query.max-clock-skew-adjustment=100ms"]
     # 选择网络
