@@ -1,0 +1,26 @@
+version: '2'
+services:
+  nginx:
+    container_name: "nginx"
+    image: 'nginx:1.23.1'
+    restart: always
+    privileged: true
+    environment:
+        - TZ='Asia/Shanghai'
+        - NGINX_HOST=foobar.com
+        - NGINX_PORT=3080
+    ports:
+        - '3080:3080'
+        - '3071:3071'
+        - '3072:3072'
+    volumes:
+        - type: bind
+          source: ./conf/nginx.conf
+          target: /etc/nginx/nginx.conf
+        - ./conf/conf.d:/etc/nginx/conf.d
+        - ./www:/usr/local/www
+    networks:
+      - some
+networks:
+    some:
+      driver: bridge
