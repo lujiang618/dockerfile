@@ -11,8 +11,6 @@ services:
         - NGINX_PORT=3080
     ports:
         - '3080:3080'
-        - '3071:3071'
-        - '3072:3072'
     volumes:
         - type: bind
           source: ./conf/nginx.conf
