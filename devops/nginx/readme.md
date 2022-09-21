@@ -20,6 +20,8 @@
 - [nginx时区设置](https://trac.nginx.org/nginx/ticket/2344)
 - [Nginx 日志文件 access_log 详解](https://blog.51cto.com/u_10401840/5236654)
 
+- [看完之后太香了！最全面的Nginx知识点总结](https://www.bilibili.com/read/cv7541870/)
+
 - [nginx负载均衡状态](https://blog.csdn.net/qq_34939308/article/details/120809539)
 - [nginx 负载均衡](https://www.cnblogs.com/mklblog/p/16478798.html)
 - [Nginx负载均衡策略之url_hash](https://blog.csdn.net/Leon_Jinhai_Sun/article/details/121153058)
