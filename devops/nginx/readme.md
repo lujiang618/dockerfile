@@ -3,6 +3,8 @@
 # 负载均衡
 - Nginx的ip_hash算法都将一个ip地址的前三段作为hash的关键字， 需要修改nginx代码并重新编译
 
+
+# 参考资料
 - [Nginx 配置之location正则表达](https://blog.csdn.net/yangyelin/article/details/112976539)
 - [nginx Rewrite（重写地址）](https://blog.csdn.net/gcc001224/article/details/125000155)
 - [Nginx 反向代理 去除 路径匹配规则url](https://blog.csdn.net/A_yonga/article/details/125236208)
