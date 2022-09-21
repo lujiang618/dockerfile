@@ -6,11 +6,18 @@ services:
     restart: always
     privileged: true
     environment:
-        - TZ='Asia/Shanghai'
+        - TZ=Asia/Shanghai  # 这里的设置的时区会影响log里面的时间
         - NGINX_HOST=foobar.com
         - NGINX_PORT=3080
     ports:
-        - '3080:3080'
+        - '80:80'
+        # - '3080:3080'
+        - '3071:3071'
+        - '3072:3072'
+        - '3073:3073'
+        - '3081:3081'
+        - '3082:3082'
+        - '3083:3083'
     volumes:
         - type: bind
           source: ./conf/nginx.conf
