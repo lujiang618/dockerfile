@@ -21,6 +21,7 @@
 - [Nginx 日志文件 access_log 详解](https://blog.51cto.com/u_10401840/5236654)
 
 - [看完之后太香了！最全面的Nginx知识点总结](https://www.bilibili.com/read/cv7541870/)
+- [本文将带领大家精读3个Nginx Lua编程实战案例，学不会就来砍我](https://view.inews.qq.com/a/20220804A0152100)
 
 - [nginx负载均衡状态](https://blog.csdn.net/qq_34939308/article/details/120809539)
 - [nginx 负载均衡](https://www.cnblogs.com/mklblog/p/16478798.html)
