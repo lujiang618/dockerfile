@@ -15,7 +15,6 @@ services:
     command:
       "redis-server /usr/local/etc/redis/redis.conf"
     networks:
-      - default 
       - some
 
 networks:
