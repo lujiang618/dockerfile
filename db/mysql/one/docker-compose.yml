@@ -18,7 +18,6 @@ services:
       - ./conf/:/etc/mysql/:rw
       - ./init/:/docker-entrypoint-initdb.d/
     networks:
-      - default 
       - some
 volumes:
   data:
@@ -28,4 +27,4 @@ volumes:
 networks:
     some:
       external: true
-    
+

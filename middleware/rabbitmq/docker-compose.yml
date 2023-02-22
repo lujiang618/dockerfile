@@ -15,12 +15,11 @@ services:
       - RABBITMQ_DEFAULT_USER=admin
       - RABBITMQ_DEFAULT_PASS=gelu8888
     networks:
-      - default 
       - some
-      
+
 volumes:
   data:
     driver: local
-networks: 
-  some: 
-    external: true   
+networks:
+  some:
+    external: true
