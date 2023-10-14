@@ -39,8 +39,8 @@ services:
     volumes:
       - etcd2_data:/bitnami/etcd
     ports:
-      - 2378:2379
-      - 2377:2380
+      - 2377:2379
+      - 2378:2380
     networks:
       - some
 
@@ -61,8 +61,8 @@ services:
     volumes:
       - etcd3_data:/bitnami/etcd
     ports:
-      - 2376:2379
-      - 2375:2380
+      - 2375:2379
+      - 2376:2380
     networks:
       - some
 
