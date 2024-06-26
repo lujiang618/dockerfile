@@ -8,7 +8,7 @@ services:
     environment:
       - TZ=Asia/Shanghai
       - MYSQL_DATABASE=some
-      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_ROOT_PASSWORD=ruC70!g8t^
       - MYSQL_ALLOW_EMPTY_PASSWORD=true
     ports:
       - '3306:3306'

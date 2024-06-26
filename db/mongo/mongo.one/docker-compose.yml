@@ -5,12 +5,14 @@ services:
     image: mongo
     restart: always
     environment:
-      MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: 111111
+      - TZ=Asia/Shanghai
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=111111
     ports:
       - 27017:27017
     volumes:
       - mongo:/data/db
+      # - ./localtime:/etc/localtime
     networks:
       - some
   mongo-express:
